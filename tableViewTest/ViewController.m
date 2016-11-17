@@ -10,9 +10,10 @@
 #import "Dog.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
-@property (nonatomic, strong) NSMutableArray *sourceArr;
+@property (nonatomic, copy) NSMutableArray *sourceArr;
 
 @end
 
@@ -42,8 +43,6 @@
 static NSString *ID = @"CELL";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
@@ -63,9 +62,9 @@ static NSString *ID = @"CELL";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     Dog *dog = self.sourceArr[indexPath.row];
-    if (dog.level == 1) {
+    if (dog.level == 1) {//如果是第一级的元素才能点击
         
-        if (dog.isOpen) {
+        if (dog.isOpen) {//打开的时候
             
             NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row + 1, dog.sons.count)];
 
@@ -112,10 +111,9 @@ static NSString *ID = @"CELL";
     
     if (_sourceArr == nil) {
         
-        Dog *dog1 = [[Dog alloc] initWithName:@"二哈" sons:@[@"二哈1",@"二哈2",@"二哈3"]];
-        Dog *dog2 = [[Dog alloc] initWithName:@"萨摩" sons:@[@"萨摩1",@"萨摩2",@"萨摩3",@"萨摩4",@"萨摩5",@"萨摩6"]];
-        Dog *dog3 = [[Dog alloc] initWithName:@"泰迪" sons:@[@"泰迪1",@"泰迪2"]];
-        
+        Dog *dog1 = [Dog creatDogWithName:@"二哈" sonsNameArr:@[@"二哈1",@"二哈2",@"二哈3"]];
+        Dog *dog2 = [Dog creatDogWithName:@"萨摩" sonsNameArr:@[@"萨摩1",@"萨摩2",@"萨摩3",@"萨摩4",@"萨摩5",@"萨摩6"]];
+        Dog *dog3 = [Dog creatDogWithName:@"泰迪" sonsNameArr:@[@"泰迪1",@"泰迪2"]];
         _sourceArr = [NSMutableArray arrayWithArray:@[dog1,dog2,dog3]];
         
     }

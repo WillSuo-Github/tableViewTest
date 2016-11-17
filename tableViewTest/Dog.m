@@ -10,10 +10,10 @@
 
 @implementation Dog
 
-- (instancetype)initWithName:(NSString *)name sons:(NSArray *)sons{
-    
-    NSMutableArray *tmpArr = [NSMutableArray array];
-    for (NSString *str in sons) {
++ (instancetype)creatDogWithName:(NSString *)name sonsNameArr:(NSArray<NSString *> *)sonsNameArr{
+    //创建son
+    NSMutableArray<Dog *> *tmpArr = [NSMutableArray array];
+    for (NSString *str in sonsNameArr) {
         Dog *d = [[Dog alloc] init];
         d.name = str;
         d.level = 2;
@@ -28,5 +28,4 @@
     d.isOpen = NO;
     return d;
 }
-
 @end

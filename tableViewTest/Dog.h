@@ -10,11 +10,23 @@
 
 @interface Dog : NSObject
 
+/**
+ 姓名
+ */
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, strong) NSArray *sons;
+/**
+ 儿子们
+ */
+@property (nonatomic, copy) NSArray<Dog *> *sons;
+/**
+ 标记是否是第一级的元素
+ */
 @property (nonatomic, assign) NSInteger level;
+/**
+ 标记是否被打开
+ */
 @property (nonatomic, assign) BOOL isOpen;
 
-- (instancetype)initWithName:(NSString *)name sons:(NSArray *)sons;
++ (instancetype)creatDogWithName:(NSString *)name sonsNameArr:(NSArray<NSString *> *)sonsNameArr;
 
 @end
